@@ -278,9 +278,9 @@ class EcsClient extends Client
      * https://support.huaweicloud.com/api-ecs/ecs_02_0303.html
      *
      *
-     * @param        $projectId
-     * @param array  $instanceIds
-     * @param string $type
+     * @param        $projectId   项目ID
+     * @param array  $instanceIds 云服务器ID列表
+     * @param string $type        SOFT：普通关机（默认）。 HARD：强制关机。
      *
      * @return array|bool|mixed|void
      * @author xietaotao
@@ -312,10 +312,10 @@ class EcsClient extends Client
      * 当前仅支持批量修改云服务器名称，一次最多可以修改1000台。
      * https://support.huaweicloud.com/api-ecs/ecs_02_0305.html
      *
-     * @param       $projectId
-     * @param array $instanceIds
-     * @param       $name
-     * @param bool  $dryRun
+     * @param       $projectId   项目ID
+     * @param array $instanceIds 云服务器ID列表
+     * @param       $name        弹性云服务器修改后的名称。
+     * @param bool  $dryRun      是否只预检此次请求
      *
      * @return array|bool|mixed|void
      * @author xietaotao
@@ -348,15 +348,16 @@ class EcsClient extends Client
      * 批量重置弹性云服务器管理帐号（root用户或Administrator用户）的密码。
      * https://support.huaweicloud.com/api-ecs/ecs_02_0306.html
      *
-     * @param       $projectId 项目ID
+     * @param       $projectId   项目ID
      * @param array $instanceIds 待批量重置密码的弹性云服务器ID信息
      * @param       $newPassword 新密码 规则参阅华为云文档
-     * @param bool  $dryRun
+     * @param bool  $dryRun      是否只预检此次请求
      *
      * @return array|bool|mixed|void
      * @author xietaotao
      */
-    public function resetPass($projectId, $instanceIds = [], $newPassword, $dryRun = false){
+    public function resetPass($projectId, $instanceIds = [], $newPassword, $dryRun = false)
+    {
 
 
         $servers = [];
@@ -369,9 +370,37 @@ class EcsClient extends Client
         $this->curlParams = $projectId . '/cloudservers/os-reset-passwords';
         $this->curlType   = 'PUT';
         $this->curlData   = [
-            'new_password'    => $newPassword,
-            'dry_run' => $dryRun,
-            'servers' => $servers,
+            'new_password' => $newPassword,
+            'dry_run'      => $dryRun,
+            'servers'      => $servers,
+        ];
+
+        return $this->request();
+    }
+
+    /**
+     * 获取VNC远程登录地址
+     * 获取弹性云服务器VNC远程登录地址。
+     * https://support.huaweicloud.com/api-ecs/ecs_02_0208.html
+     *
+     * @param $projectId  项目ID。
+     * @param $instanceId 云服务器ID。
+     *
+     * @return array|bool|mixed|void
+     * @author xietaotao
+     */
+    public function vnc($projectId, $instanceId)
+    {
+
+
+        $this->version    = 'v1';
+        $this->curlParams = $projectId . '/cloudservers/' . $instanceId . '/remote_console';
+        $this->curlType   = 'POST';
+        $this->curlData   = [
+            'remote_console' => [
+                'protocol' => 'vnc',
+                'type'     => 'novnc',
+            ],
         ];
 
         return $this->request();
