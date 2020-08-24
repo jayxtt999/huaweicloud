@@ -49,5 +49,51 @@ class BssClient extends Client
 
     }
 
+    /**
+     * @param $orderId
+     *
+     * @return array|bool|mixed|void
+     * @author xietaotao
+     */
+    public function orderDetail($orderId){
+
+        $this->version    = 'v2';
+        $this->curlParams = "orders/customer-orders/details/".$orderId;
+        $this->noEndpoint = true;
+        return $this->request();
+
+    }
+
+    /**
+     * https://support.huaweicloud.com/api-oce/api_order_00018.html
+     * @param array $resourceIds
+     * @param       $periodType
+     * @param       $periodNum
+     * @param       $expirePolicy
+     * @param       $isAutoPay
+     *
+     * @return array|bool|mixed|void
+     * @author xietaotao
+     */
+    public function renew($resourceIds, $periodType, $periodNum, $expirePolicy, $isAutoPay)
+    {
+
+        $this->version    = 'v2';
+        $this->curlType    = 'POST';
+        $this->curlParams = "orders/subscriptions/resources/renew";
+        $this->noEndpoint = true;
+
+        $this->curlData = [
+            'resource_ids'  => $resourceIds,
+            'period_type'   => $periodType,
+            'period_num'    => $periodNum,
+            'expire_policy' => $expirePolicy,
+            'is_auto_pay'   => $isAutoPay,
+        ];
+        return $this->request();
+    }
+
+    
+    
 
 }
