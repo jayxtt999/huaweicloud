@@ -43,11 +43,12 @@ class EvsClient extends Client
      * @param $size 云硬盘大小，单位为GB
      * @param $name 云硬盘名称
      * @param $diskCount 批量创云硬盘的个数。如果无该参数，表明只创建1个云硬盘，目前最多支持批量创建100个
+     * @param $tags 创建云硬盘的时候，给云硬盘绑定标签。
      *
      * @return array|bool|mixed|void
      * @author xietaotao
      */
-    public function createDisks($projectId, $zone, $volumeType, $size, $name, $diskCount)
+    public function createDisks($projectId, $zone, $volumeType, $size, $name, $diskCount,$tags=[])
     {
 
         $this->version    = 'v2.1';
@@ -65,10 +66,12 @@ class EvsClient extends Client
             ],
             'bssParam' => [
                 "chargingMode" => "postPaid",
-                "isAutoPay"    => "true",
+                "isAutoPay"    => true,
             ],
         ];
-
+        if($tags){
+            $this->curlData['volume']['tags'] = $tags;
+        }
         return $this->request();
 
     }
@@ -99,6 +102,43 @@ class EvsClient extends Client
             ],
         ];
 
+        return $this->request();
+    }
+
+
+    /**
+     * 查询所有的可用分区信息
+     * https://support.huaweicloud.com/api-evs/evs_04_2081.html
+     *
+     * @param $projectId 项目ID
+     *
+     * @return array|bool|mixed|void
+     * @author xietaotao
+     */
+    public function getAvailabilityZone($projectId){
+        $this->version    = 'v2';
+        $this->curlParams = $projectId . '/os-availability-zone';
+        return $this->request();
+
+    }
+
+
+
+    /**
+     * 查询任务的执行状态
+     * https://support.huaweicloud.com/api-evs/evs_04_0054.html
+     *
+     * @param $projectId
+     * @param $jobId
+     *
+     * @return array|bool|mixed|void
+     * @author xietaotao
+     */
+    public function jobs($projectId, $jobId)
+    {
+        $this->version    = 'v1';
+        $this->curlParams = $projectId . '/jobs/' . $jobId;
+        $this->curlMethod   = 'GET';
         return $this->request();
     }
 }

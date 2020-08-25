@@ -146,18 +146,20 @@ class Client
         $curl     = $this->signer->Sign($req);
         $response = curl_exec($curl);
         $status   = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-        if ($status != 200) {
+        if ($status != 200 && $status != 202) {
             $error = [
                 'http_code' => $status,
                 'url'       => $this->curlUrl,
                 'method'       => $this->curlMethod,
             ];
             if ($response) {
-                $response = json_decode($response);
-                $response = $this->objectToArray($response);
-                if (isset($response['error'])) {
-                    $error['code']    = $response['error']['code'];
-                    $error['message'] = $response['error']['message'];
+                $responseDe = json_decode($response);
+                $responseDe = $this->objectToArray($responseDe);
+                if (isset($responseDe['error'])) {
+                    $error['code']    = $responseDe['error']['code'];
+                    $error['message'] = $responseDe['error']['message'];
+                }else{
+                    $error['message'] = $response;
                 }
             }
             $this->error = json_encode($error);
