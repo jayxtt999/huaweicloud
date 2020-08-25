@@ -408,4 +408,33 @@ class EcsClient extends Client
         return $this->request();
     }
 
+
+    /**
+     * 切换弹性云服务器操作系统（安装Cloud-init）
+     * @param $projectId
+     * @param $instanceId
+     * @param $adminpass
+     * @param $imageid
+     *
+     * @return array|bool|mixed|void
+     * @author xietaotao
+     */
+    public function changeos($projectId, $instanceId,$adminpass,$imageid)
+    {
+
+
+        $this->version    = 'v1';
+        $this->curlMethod   = 'POST';
+        $this->curlParams = $projectId . '/cloudservers/' . $instanceId . '/changeos';
+        $this->curlData   = [
+            'os-change' => [
+                'adminpass' => $adminpass,
+                'imageid'     => $imageid,
+                'mode'     => 'withStopServer',
+            ],
+        ];
+
+        return $this->request();
+    }
+
 }
