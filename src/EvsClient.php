@@ -15,17 +15,21 @@ class EvsClient extends Client
 
     /**
      * 查询磁盘信息
+     *
      * @param $projectId
      * @param $instanceId
      *
      * @return array|bool|mixed|void
      * @author xietaotao
      */
-    public function describeDisks($projectId,$volumeId){
+    public function describeDisks($projectId, $volumeId)
+    {
 
         $this->version    = 'v2';
-        $this->curlParams = $projectId . '/cloudvolumes/'.$volumeId;
-        return  $this->request();
+        $this->curlMethod = 'GET';
+        $this->curlParams = $projectId . '/cloudvolumes/' . $volumeId;
+
+        return $this->request();
 
     }
 

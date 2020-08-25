@@ -41,8 +41,8 @@ class EcsClient extends Client
     {
 
         $this->version    = 'v1.1';
+        $this->curlMethod   = 'POST';
         $this->curlParams = $projectId . '/cloudservers';
-        $this->curlType   = 'POST';
         $this->curlData   = [
             'server' => [
                 'availability_zone' => $zone,
@@ -98,8 +98,8 @@ class EcsClient extends Client
     {
 
         $this->version    = 'v1.1';
+        $this->curlMethod   = 'POST';
         $this->curlParams = $projectId . '/cloudservers/' . $instanceId . '/resize';
-        $this->curlType   = 'POST';
         $this->curlData   = [
             'resize' => [
                 'flavorRef'   => $flavorRef,
@@ -127,6 +127,7 @@ class EcsClient extends Client
     {
 
         $this->version    = 'v1';
+        $this->curlMethod   = 'GET';
         $this->curlParams = $projectId . '/cloudservers/' . $instanceId;
 
         return $this->request();
@@ -163,6 +164,7 @@ class EcsClient extends Client
     public function novaListAvailabilityZone($projectId)
     {
         $this->version    = 'v2.1';
+        $this->curlMethod   = 'GET';
         $this->curlParams = $projectId . '/os-availability-zone';
 
         return $this->request();
@@ -200,7 +202,7 @@ class EcsClient extends Client
     {
         $this->version    = 'v1';
         $this->curlParams = $projectId . '/jobs/' . $jobId;
-
+        $this->curlMethod   = 'GET';
         return $this->request();
     }
 
@@ -225,8 +227,8 @@ class EcsClient extends Client
             ];
         }
         $this->version    = 'v1';
+        $this->curlMethod   = 'POST';
         $this->curlParams = $projectId . '/cloudservers/action';
-        $this->curlType   = 'POST';
         $this->curlData   = [
             'os-start' => [
                 'servers' => $servers,
@@ -259,8 +261,8 @@ class EcsClient extends Client
             ];
         }
         $this->version    = 'v1';
+        $this->curlMethod   = 'POST';
         $this->curlParams = $projectId . '/cloudservers/action';
-        $this->curlType   = 'POST';
         $this->curlData   = [
             'reboot' => [
                 'type'    => $type,
@@ -296,7 +298,7 @@ class EcsClient extends Client
         }
         $this->version    = 'v1';
         $this->curlParams = $projectId . '/cloudservers/action';
-        $this->curlType   = 'POST';
+        $this->curlMethod   = 'POST';
         $this->curlData   = [
             'os-stop' => [
                 'type'    => $type,
@@ -331,7 +333,7 @@ class EcsClient extends Client
         }
         $this->version    = 'v1';
         $this->curlParams = $projectId . '/cloudservers/server-name';
-        $this->curlType   = 'PUT';
+        $this->curlMethod   = 'PUT';
         $this->curlData   = [
             'name'    => $name,
             'dry_run' => $dryRun,
@@ -368,7 +370,7 @@ class EcsClient extends Client
         }
         $this->version    = 'v1';
         $this->curlParams = $projectId . '/cloudservers/os-reset-passwords';
-        $this->curlType   = 'PUT';
+        $this->curlMethod   = 'PUT';
         $this->curlData   = [
             'new_password' => $newPassword,
             'dry_run'      => $dryRun,
@@ -395,7 +397,7 @@ class EcsClient extends Client
 
         $this->version    = 'v1';
         $this->curlParams = $projectId . '/cloudservers/' . $instanceId . '/remote_console';
-        $this->curlType   = 'POST';
+        $this->curlMethod   = 'POST';
         $this->curlData   = [
             'remote_console' => [
                 'protocol' => 'vnc',

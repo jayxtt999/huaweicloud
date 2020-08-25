@@ -30,7 +30,7 @@ class BssClient extends Client
     public function resources($resourceIds = [], $orderId = '', $onlyMainResource = false, $offset = 0, $limit = 500)
     {
         $this->version    = 'v2';
-        $this->curlType    = 'POST';
+        $this->curlMethod    = 'POST';
         $this->curlParams = "orders/suscriptions/resources/query";
         $this->noEndpoint = true;
 
@@ -79,7 +79,7 @@ class BssClient extends Client
     {
 
         $this->version    = 'v2';
-        $this->curlType    = 'POST';
+        $this->curlMethod    = 'POST';
         $this->curlParams = "orders/subscriptions/resources/renew";
         $this->noEndpoint = true;
 

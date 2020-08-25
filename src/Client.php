@@ -30,7 +30,7 @@ class Client
     public $fixedCurlUrl = false;
     public $noEndpoint = false;
     public $curlParams;
-    public $curlType     = 'GET';
+    public $curlMethod     = 'GET';
     public $curlData;
     public $endpointList
                          = array(
@@ -132,12 +132,11 @@ class Client
             return false;
         }
         if ($this->curlData) {
-            $this->curlType = 'POST';
             $body = json_encode($this->curlData);
         } else {
             $body = '';
         }
-        $req          = new Request($this->curlType, $this->curlUrl);
+        $req          = new Request($this->curlMethod, $this->curlUrl);
         $req->headers = array(
             'content-type' => 'application/json;charset=UTF-8',
         );
@@ -151,6 +150,7 @@ class Client
             $error = [
                 'http_code' => $status,
                 'url'       => $this->curlUrl,
+                'method'       => $this->curlMethod,
             ];
             if ($response) {
                 $response = json_decode($response);
