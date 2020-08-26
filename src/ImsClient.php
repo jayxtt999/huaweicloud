@@ -17,14 +17,14 @@ class ImsClient extends Client
     public function Images($params=[])
     {
         $this->version    = 'v2';
-        $curlParams = 'images?';
+        $curlParams = 'images';
+        $i = 1;
         foreach ($params as $key=>$param){
-            $curlParams.=($key.'='.$param);
+            $curlParams.=( ($i==1?'?':'&') .$key.'='.$param);
+            $i++;
         }
         $this->curlParams = $curlParams;
         return $this->request();
-
-
 
     }
 
