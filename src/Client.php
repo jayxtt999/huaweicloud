@@ -163,7 +163,6 @@ class Client
                 }
             }
             $this->error = json_encode($error);
-
             return false;
         }
         curl_close($curl);
