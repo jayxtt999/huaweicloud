@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: xietaotao
+ * User: naix
  * Date: 2020/8/20
  * Time: 11:18
  */
@@ -31,7 +31,7 @@ class EipClient extends Client
      * @param $size
      *
      * @return array|bool|mixed|void
-     * @author xietaotao
+     * @author naix
      */
     public function resetMaxBandwidthV2($projectId, $bandwidthId, $size)
     {

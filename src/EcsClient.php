@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: xietaotao
+ * User: naix
  * Date: 2020/8/20
  * Time: 11:18
  */
@@ -35,7 +35,7 @@ class EcsClient extends Client
      * @param              $instanceName
      *
      * @return array|bool|mixed|void
-     * @author xietaotao
+     * @author naix
      */
     public function create($zone, $projectId, $instanceType, $imageId, $vpcId, $nics, Eip $eip, $month, SystemVolume $systemVolume, DataVolume $dataVolume, $password, $number, $orderNo, $instanceName,$serverTags=[])
     {
@@ -87,7 +87,7 @@ class EcsClient extends Client
      * @param $instanceId
      * @param $flavorRef
      *
-     * @author xietaotao
+     * @author naix
      */
     public function resize($projectId, $instanceId, $flavorRef)
     {
@@ -116,7 +116,7 @@ class EcsClient extends Client
      * @param $instanceId
      *
      * @return array|bool|mixed|void
-     * @author xietaotao
+     * @author naix
      */
     public function describe($projectId, $instanceId)
     {
@@ -136,7 +136,7 @@ class EcsClient extends Client
      * @param $instanceId
      *
      * @return array|bool|mixed|void
-     * @author xietaotao
+     * @author naix
      */
     public function describeDisks($projectId, $instanceId)
     {
@@ -154,7 +154,7 @@ class EcsClient extends Client
      * @param $projectId
      *
      * @return array|bool|mixed|void
-     * @author xietaotao
+     * @author naix
      */
     public function novaListAvailabilityZone($projectId)
     {
@@ -173,7 +173,7 @@ class EcsClient extends Client
      * @param $projectId
      *
      * @return array|bool|mixed|void
-     * @author xietaotao
+     * @author naix
      */
     public function getFlavors($projectId)
     {
@@ -191,7 +191,7 @@ class EcsClient extends Client
      * @param $jobId
      *
      * @return array|bool|mixed|void
-     * @author xietaotao
+     * @author naix
      */
     public function jobs($projectId, $jobId)
     {
@@ -210,7 +210,7 @@ class EcsClient extends Client
      * @param       $projectId   项目ID
      * @param array $instanceIds 实例ID
      *
-     * @author xietaotao
+     * @author naix
      */
     public function start($projectId, $instanceIds = [])
     {
@@ -244,7 +244,7 @@ class EcsClient extends Client
      * @param string $type        重启类型：SOFT：普通重启。HARD：强制重启。
      *
      * @return array|bool|mixed|void
-     * @author xietaotao
+     * @author naix
      */
     public function reStart($projectId, $instanceIds = [], $type = 'SOFT')
     {
@@ -280,7 +280,7 @@ class EcsClient extends Client
      * @param string $type        SOFT：普通关机（默认）。 HARD：强制关机。
      *
      * @return array|bool|mixed|void
-     * @author xietaotao
+     * @author naix
      */
     public function stop($projectId, $instanceIds = [], $type = 'SOFT')
     {
@@ -315,7 +315,7 @@ class EcsClient extends Client
      * @param bool  $dryRun      是否只预检此次请求
      *
      * @return array|bool|mixed|void
-     * @author xietaotao
+     * @author naix
      */
     public function reName($projectId, $instanceIds = [], $name, $dryRun = false)
     {
@@ -351,7 +351,7 @@ class EcsClient extends Client
      * @param bool  $dryRun      是否只预检此次请求
      *
      * @return array|bool|mixed|void
-     * @author xietaotao
+     * @author naix
      */
     public function resetPass($projectId, $instanceIds = [], $newPassword, $dryRun = false)
     {
@@ -384,7 +384,7 @@ class EcsClient extends Client
      * @param $instanceId 云服务器ID。
      *
      * @return array|bool|mixed|void
-     * @author xietaotao
+     * @author naix
      */
     public function vnc($projectId, $instanceId)
     {
@@ -412,7 +412,7 @@ class EcsClient extends Client
      * @param $imageid
      *
      * @return array|bool|mixed|void
-     * @author xietaotao
+     * @author naix
      */
     public function changeos($projectId, $instanceId,$adminpass,$imageid)
     {
@@ -442,7 +442,7 @@ class EcsClient extends Client
      * @param $volumeId
      *
      * @return array|bool|mixed|void
-     * @author xietaotao
+     * @author naix
      */
    public function attachVolume($projectId, $instanceId,$volumeId)
     {

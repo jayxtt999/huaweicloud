@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: xietaotao
+ * User: naix
  * Date: 2020/8/20
  * Time: 11:18
  */
@@ -20,7 +20,7 @@ class EvsClient extends Client
      * @param $instanceId
      *
      * @return array|bool|mixed|void
-     * @author xietaotao
+     * @author naix
      */
     public function describeDisk($projectId, $volumeId)
     {
@@ -41,7 +41,7 @@ class EvsClient extends Client
      * @param $instanceId
      *
      * @return array|bool|mixed|void
-     * @author xietaotao
+     * @author naix
      */
     public function describeDisks($projectId, $filter = [])
     {
@@ -70,7 +70,7 @@ class EvsClient extends Client
      * @param $tags       创建云硬盘的时候，给云硬盘绑定标签。
      *
      * @return array|bool|mixed|void
-     * @author xietaotao
+     * @author naix
      */
     public function createDisks($projectId, $zone, $volumeType, $size, $name, $diskCount, $tags = [])
     {
@@ -110,7 +110,7 @@ class EvsClient extends Client
      * @param $newSize
      *
      * @return array|bool|mixed|void
-     * @author xietaotao
+     * @author naix
      */
     public function resizeDisk($projectId, $volumeId, $newSize)
     {
@@ -140,7 +140,7 @@ class EvsClient extends Client
      * @param $volumeId  云硬盘ID
      *
      * @return array|bool|mixed|void
-     * @author xietaotao
+     * @author naix
      */
     public function deleteDisk($projectId, $volumeId)
     {
@@ -160,7 +160,7 @@ class EvsClient extends Client
      * @param $projectId 项目ID
      *
      * @return array|bool|mixed|void
-     * @author xietaotao
+     * @author naix
      */
     public function getAvailabilityZone($projectId)
     {
@@ -180,7 +180,7 @@ class EvsClient extends Client
      * @param $jobId
      *
      * @return array|bool|mixed|void
-     * @author xietaotao
+     * @author naix
      */
     public function jobs($projectId, $jobId)
     {

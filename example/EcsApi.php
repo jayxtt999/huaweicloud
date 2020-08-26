@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: xietaotao
+ * User: naix
  * Date: 2020/8/20
  * Time: 11:15
  */
@@ -45,7 +45,7 @@ class EcsApi
      * @param $instanceId
      *
      * @return array|bool|mixed|void
-     * @author xietaotao
+     * @author naix
      */
     public function describe($projectId, $instanceId)
     {
@@ -58,7 +58,7 @@ class EcsApi
      * @param $instanceId
      *
      * @return array|bool|mixed|void
-     * @author xietaotao
+     * @author naix
      */
     public function describeDisks($projectId, $instanceId)
     {
@@ -71,7 +71,7 @@ class EcsApi
      * @param $jobId
      *
      * @return array|bool|mixed|void
-     * @author xietaotao
+     * @author naix
      */
     public function jobs($projectId, $jobId)
     {
@@ -86,7 +86,7 @@ class EcsApi
      * @param $flavorRef
      *
      * @return array|bool|mixed|void
-     * @author xietaotao
+     * @author naix
      */
     public function resize($projectId, $instanceId, $flavorRef)
     {
@@ -102,7 +102,7 @@ class EcsApi
      * @param array $instanceIds
      *
      * @return array|bool|mixed|void
-     * @author xietaotao
+     * @author naix
      */
     public function start($projectId, $instanceIds = [])
     {
@@ -117,7 +117,7 @@ class EcsApi
      * @param string $type
      *
      * @return array|bool|mixed|void
-     * @author xietaotao
+     * @author naix
      */
     public function reStart($projectId, $instanceIds = [], $type = 'SOFT')
     {
@@ -133,7 +133,7 @@ class EcsApi
      * @param string $type
      *
      * @return array|bool|mixed|void
-     * @author xietaotao
+     * @author naix
      */
     public function stop($projectId, $instanceIds, $type = 'SOFT')
     {
@@ -150,7 +150,7 @@ class EcsApi
      * @param $password
      *
      * @return array|bool|mixed|void
-     * @author xietaotao
+     * @author naix
      */
     public function resetPass($projectId, $instanceIds, $password)
     {
@@ -166,7 +166,7 @@ class EcsApi
      * @param $name
      *
      * @return array|bool|mixed|void
-     * @author xietaotao
+     * @author naix
      */
     public function reName($projectId, $instanceIds, $name)
     {
@@ -181,7 +181,7 @@ class EcsApi
      * @param $instanceId
      *
      * @return array|bool|mixed|void
-     * @author xietaotao
+     * @author naix
      */
     public function vnc($projectId, $instanceId)
     {
@@ -198,7 +198,7 @@ class EcsApi
      * @param $imageid
      *
      * @return array|bool|mixed|void
-     * @author xietaotao
+     * @author naix
      */
     public function changeOs($projectId, $instanceId, $adminPass, $imageid)
     {
@@ -214,7 +214,7 @@ class EcsApi
      * @param $volumeId
      *
      * @return array|bool|mixed|void
-     * @author xietaotao
+     * @author naix
      */
     public function attachVolume($projectId, $instanceId,$volumeId ){
 

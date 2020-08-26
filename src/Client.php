@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: xietaotao
+ * User: naix
  * Date: 2020/8/20
  * Time: 11:30
  */
@@ -122,7 +122,7 @@ class Client
 
     /**
      * @return array|bool|mixed|void
-     * @author xietaotao
+     * @author naix
      */
     public function request()
     {

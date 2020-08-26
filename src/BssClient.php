@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: xietaotao
+ * User: naix
  * Date: 2020/8/20
  * Time: 11:18
  */
@@ -25,7 +25,7 @@ class BssClient extends Client
      * @param int    $limit            每次查询的条数。默认值为10。 这里取500
      *
      * @return array|bool|mixed|void
-     * @author xietaotao
+     * @author naix
      */
     public function resources($resourceIds = [], $orderId = '', $onlyMainResource = false, $offset = 0, $limit = 500)
     {
@@ -53,7 +53,7 @@ class BssClient extends Client
      * @param $orderId
      *
      * @return array|bool|mixed|void
-     * @author xietaotao
+     * @author naix
      */
     public function orderDetail($orderId){
 
@@ -73,7 +73,7 @@ class BssClient extends Client
      * @param       $isAutoPay
      *
      * @return array|bool|mixed|void
-     * @author xietaotao
+     * @author naix
      */
     public function renew($resourceIds, $periodType, $periodNum, $expirePolicy, $isAutoPay)
     {

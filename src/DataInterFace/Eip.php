@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: xietaotao
+ * User: naix
  * Date: 2020/8/20
  * Time: 16:08
  */
@@ -53,7 +53,7 @@ class Eip implements AttributesInterface
      * 拉美-圣地亚哥二：5_bgp
      *
      * @return string
-     * @author xietaotao
+     * @author naix
      */
     public function getIpType($region)
     {
