@@ -37,7 +37,7 @@ class EcsClient extends Client
      * @return array|bool|mixed|void
      * @author xietaotao
      */
-    public function create($zone, $projectId, $instanceType, $imageId, $vpcId, $nics, Eip $eip, $month, SystemVolume $systemVolume, DataVolume $dataVolume, $password, $number, $orderNo, $instanceName)
+    public function create($zone, $projectId, $instanceType, $imageId, $vpcId, $nics, Eip $eip, $month, SystemVolume $systemVolume, DataVolume $dataVolume, $password, $number, $orderNo, $instanceName,$serverTags=[])
     {
 
         $this->version    = 'v1.1';
@@ -66,12 +66,7 @@ class EcsClient extends Client
                     "isAutoRenew"  => 'false',
                     "isAutoPay"    => 'true',
                 ],
-                'server_tags'       => [
-                    [
-                        'key'   => 'orderNo',
-                        'value' => $orderNo,
-                    ],
-                ],
+                'server_tags'       => $serverTags,
 
 
             ],
