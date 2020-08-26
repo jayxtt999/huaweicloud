@@ -458,4 +458,26 @@ class EcsClient extends Client
         return $this->request();
     }
 
+    /**
+     * 弹性云服务器卸载磁盘
+     * 从弹性云服务器中卸载磁盘。
+     * https://support.huaweicloud.com/api-ecs/ecs_02_0606.html
+     *
+     * @param     $projectId
+     * @param     $instanceId
+     * @param     $volumeId
+     * @param int $deleteFlag
+     *
+     * @return array|bool|mixed|void
+     * @author naix
+     */
+    public function detachVolume($projectId, $instanceId,$volumeId,$deleteFlag=0)
+    {
+        $this->version    = 'v1';
+        $this->curlMethod   = 'POST';
+        $this->curlParams = $projectId . '/cloudservers/' . $instanceId . '/detachvolume/'.$volumeId.'?delete_flag='.$deleteFlag;
+
+        return $this->request();
+    }
+
 }
