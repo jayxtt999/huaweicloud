@@ -100,7 +100,7 @@ class EcsClient extends Client
                 'flavorRef'   => $flavorRef,
                 'mode'        => 'withStopServer ',//取值为withStopServer ，支持开机状态下变更规格。mode取值为withStopServer时，对开机状态的云服务器执行变更规格操作，系统自动对云服务器先执行关机，再变更规格，变更成功后再执行开机。
                 'extendparam' => [
-                    "isAutoPay" => true,
+                    "isAutoPay" => false,
                 ],
             ],
         ];
@@ -426,6 +426,32 @@ class EcsClient extends Client
                 'adminpass' => $adminpass,
                 'imageid'     => $imageid,
                 'mode'     => 'withStopServer',
+            ],
+        ];
+
+        return $this->request();
+    }
+
+
+    /**
+     * 弹性云服务器挂载磁盘
+     * https://support.huaweicloud.com/api-ecs/ecs_02_0605.html
+     *
+     * @param $projectId
+     * @param $instanceId
+     * @param $volumeId
+     *
+     * @return array|bool|mixed|void
+     * @author xietaotao
+     */
+   public function attachVolume($projectId, $instanceId,$volumeId)
+    {
+        $this->version    = 'v1';
+        $this->curlMethod   = 'POST';
+        $this->curlParams = $projectId . '/cloudservers/' . $instanceId . '/attachvolume';
+        $this->curlData   = [
+            'volumeAttachment' => [
+                'volumeId' => $volumeId,
             ],
         ];
 
