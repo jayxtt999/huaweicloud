@@ -9,9 +9,9 @@
 namespace HwCloud;
 
 
-use app\huawei\service\Sdk\DataInterFace\DataVolume;
-use app\huawei\service\Sdk\DataInterFace\Eip;
-use app\huawei\service\Sdk\DataInterFace\SystemVolume;
+use HwCloud\DataInterFace\DataVolume;
+use HwCloud\DataInterFace\Eip;
+use HwCloud\DataInterFace\SystemVolume;
 
 class EcsClient extends Client
 {
@@ -63,8 +63,8 @@ class EcsClient extends Client
                     "chargingMode" => "prePaid",
                     "periodType"   => "month",
                     "periodNum"    => $month,
-                    "isAutoRenew"  => 'false',
-                    "isAutoPay"    => 'true',
+                    "isAutoRenew"  => false,
+                    "isAutoPay"    => true,
                 ],
                 'server_tags'       => $serverTags,
 
