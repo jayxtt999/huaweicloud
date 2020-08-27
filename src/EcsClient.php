@@ -175,11 +175,13 @@ class EcsClient extends Client
      * @return array|bool|mixed|void
      * @author naix
      */
-    public function getFlavors($projectId)
+    public function getFlavors($projectId,$az='')
     {
         $this->version    = 'v1';
         $this->curlParams = $projectId . '/cloudservers/flavors';
-
+        if($az){
+            $this->curlParams .= ('?'.$az);
+        }
         return $this->request();
     }
 
