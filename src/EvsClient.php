@@ -35,7 +35,8 @@ class EvsClient extends Client
 
 
     /**
-     * 查询磁盘信息
+     * 查询所有云硬盘详情
+     * https://support.huaweicloud.com/api-evs/evs_04_2006.html
      *
      * @param $projectId
      * @param $instanceId

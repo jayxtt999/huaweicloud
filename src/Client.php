@@ -150,6 +150,7 @@ class Client
             $error = [
                 'http_code' => $status,
                 'url'       => $this->curlUrl,
+                'param'       => $this->curlData,
                 'method'       => $this->curlMethod,
             ];
             if ($response) {

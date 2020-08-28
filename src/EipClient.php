@@ -40,7 +40,7 @@ class EipClient extends Client
         $this->curlParams = "{$projectId}/bandwidths/" . $bandwidthId;
         $this->curlData   = [
             'bandwidth' => ['size' => $size],
-            'bandwidth' => ['is_auto_pay' => true],
+            'extendParam' => ['is_auto_pay' => true],
         ];
 
         return $this->request();
