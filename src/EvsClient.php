@@ -126,7 +126,7 @@ class EvsClient extends Client
             ],
             'bssParam'  => [
                 "chargingMode" => "postPaid",
-                "isAutoPay"    => "true",
+                "isAutoPay"    => true,
             ],
         ];
 
