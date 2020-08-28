@@ -19,6 +19,10 @@ class EcsClient extends Client
     public $domain = 'ecs';
 
     /**
+     * 创建云服务器
+     * 创建一台或多台云服务器。
+     * https://support.huaweicloud.com/api-ecs/ecs_02_0101.html
+     *
      * @param              $zone
      * @param              $projectId  项目ID
      * @param              $instanceType
@@ -111,6 +115,7 @@ class EcsClient extends Client
 
     /**
      * 查询服务器详情
+     * https://support.huaweicloud.com/api-ecs/ecs_02_0104.html
      *
      * @param $projectId
      * @param $instanceId
@@ -131,6 +136,7 @@ class EcsClient extends Client
 
     /**
      * 查询服务器磁盘信息
+     * https://support.huaweicloud.com/api-ecs/ecs_02_0604.html
      *
      * @param $projectId
      * @param $instanceId
@@ -169,7 +175,7 @@ class EcsClient extends Client
 
     /**
      * 获取项目规格
-     *
+     * https://support.huaweicloud.com/api-ecs/zh-cn_topic_0020212656.html
      * @param $projectId
      *
      * @return array|bool|mixed|void
@@ -180,7 +186,7 @@ class EcsClient extends Client
         $this->version    = 'v1';
         $this->curlParams = $projectId . '/cloudservers/flavors';
         if($az){
-            $this->curlParams .= ('?'.$az);
+            $this->curlParams .= ('?availability_zone='.$az);
         }
         return $this->request();
     }
