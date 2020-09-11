@@ -236,7 +236,7 @@ class BssClient extends Client
             'verified_number'   => $verifiedNumber,
             'xaccount_type'     => $xAccountType,
             'verified_type'     => $verifiedType,
-            'verified_file_url' => $verifiedFileUrl,
+            //'verified_file_url' => [],
         ];
 
         if ($extraParam) {
@@ -302,4 +302,25 @@ class BssClient extends Client
         return $this->request();
 
     }
+
+    /**
+     * 查询客户信用额度
+     *
+     * @param array $customerIds 客户ID列表，最大支持100个 如果其中有存在不是该伙伴的客户ID，在响应中不返回该客户信息。
+     *
+     * @return array|bool|mixed|void
+     * @author xietaotao
+     */
+    public function queryCreditCoupons($customerIds=[]){
+        $this->version    = 'v2';
+        $this->curlMethod = 'POST';
+        $this->curlParams = "partners/sub-customers/credit-coupons/query";
+        $this->noEndpoint = true;
+        $this->curlData   = [
+            'customer_ids' => $customerIds,
+        ];
+
+        return $this->request();
+    }
+
 }
