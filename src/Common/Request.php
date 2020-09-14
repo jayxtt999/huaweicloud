@@ -13,6 +13,7 @@ class Request
     public $headers = array();
     public $body = '';
     public $projectId = '';
+    public $curlopt_header = false;
 
     function __construct()
     {

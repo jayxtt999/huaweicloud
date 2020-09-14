@@ -20,20 +20,22 @@ class Client
      */
     public $signer;
     public $error;
-    public $domain   = '';
-    public $protocol = 'https';
-    public $suffix   = '.com';
-    public $endpoint     = '';
+    public $domain           = '';
+    public $protocol         = 'https';
+    public $suffix           = '.com';
+    public $endpoint         = '';
     public $region;
     public $version;
-    public $curlUrl      = '';
-    public $fixedCurlUrl = false;
-    public $noEndpoint = false;
+    public $curlUrl          = '';
+    public $fixedCurlUrl     = false;
+    public $noEndpoint       = false;
     public $curlParams;
-    public $curlMethod     = 'GET';
+    public $curlMethod       = 'GET';
     public $curlData;
+    public $returnHeader     = false;//是否需要返回header头信息
+    public $returnHeaderData = [];//返回的header头信息
     public $endpointList
-                         = array(
+                             = array(
             'cn-northeast-1' => array('key' => 'cn-northeast-1', 'name' => '东北-大连', 'protocol' => 'https', 'suffix' => '.com'),
             'af-south-1'     => array('key' => 'af-south-1', 'name' => '非洲-约翰内斯堡', 'protocol' => 'https', 'suffix' => '.com'),
             'cn-north-4'     => array('key' => 'cn-north-4', 'name' => '华北-北京四', 'protocol' => 'https', 'suffix' => '.com'),
@@ -107,10 +109,10 @@ class Client
 
             return false;
         }
-        if(false === $this->noEndpoint){
+        if (false === $this->noEndpoint) {
             $this->curlUrl = $this->protocol . '://' . $this->domain . '.' . $this->endpoint . '.myhuaweicloud' . $this->suffix . '/';
-        }else{
-            $this->curlUrl =  'https://' . $this->domain .  '.myhuaweicloud' . '.com/';
+        } else {
+            $this->curlUrl = 'https://' . $this->domain . '.myhuaweicloud' . '.com/';
         }
         if ($this->version) {
             $this->curlUrl .= ($this->version . '/');
@@ -142,16 +144,38 @@ class Client
         );
 
         $req->body = $body;
-
+        if ($this->returnHeader) {
+            $req->curlopt_header = true;
+        }
         $curl     = $this->signer->Sign($req);
         $response = curl_exec($curl);
         $status   = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-        if ($status != 200 && $status != 202) {
+        if ($this->returnHeader) {
+            $headerTotal = strlen($response);
+            $headerSize  = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
+            $bodySize    = $headerTotal - $headerSize;
+            $header      = substr($response, 0, $headerSize);
+            $pHeader     = explode("\r\n", $header);
+            $headerArr   = array();
+            foreach ($pHeader as $value) {
+                if (strpos($value, ':') !== false) {
+                    $a               = explode(":", $value);
+                    $key             = $a[0];
+                    $v               = $a[1];
+                    $headerArr[$key] = $v;
+                } else {
+                    array_push($headerArr, $value);
+                }
+            }
+            $this->returnHeaderData = $headerArr;
+            $response               = substr($response, $headerSize, $bodySize);
+        }
+        if (!in_array($status, [200, 201, 202])) {
             $error = [
                 'http_code' => $status,
                 'url'       => $this->curlUrl,
-                'param'       => $this->curlData,
-                'method'       => $this->curlMethod,
+                'param'     => $this->curlData,
+                'method'    => $this->curlMethod,
             ];
             if ($response) {
                 $responseDe = json_decode($response);
@@ -159,11 +183,12 @@ class Client
                 if (isset($responseDe['error'])) {
                     $error['code']    = $responseDe['error']['code'];
                     $error['message'] = $responseDe['error']['message'];
-                }else{
+                } else {
                     $error['message'] = $response;
                 }
             }
             $this->error = json_encode($error);
+
             return false;
         }
         curl_close($curl);

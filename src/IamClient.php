@@ -48,16 +48,21 @@ class IamClient extends Client
     }
 
     /**
+     * 获取IAM用户Token（使用密码）
+     * https://apiexplorer.developer.huaweicloud.com/apiexplorer/debug?product=IAM&api=KeystoneCreateUserTokenByPassword
      * @return array|bool|mixed|void
      * @author xietaotao
      */
-    public function getToken()
+    public function getToken($auth=[])
     {
 
         $this->version    = 'v3';
         $this->curlMethod = 'POST';
         $this->curlParams = 'auth/tokens';
-
+        $this->noEndpoint = true;
+        $this->curlData   = [
+            'auth' => $auth,
+        ];
         return $this->request();
     }
 }

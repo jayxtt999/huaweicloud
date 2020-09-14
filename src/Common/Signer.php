@@ -198,7 +198,10 @@ class Signer
         curl_setopt($curl, CURLOPT_NOBODY, FALSE);
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
         curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
-
+        
+        if($r->curlopt_header){
+            curl_setopt($curl, CURLOPT_HEADER, true);
+        }
         return $curl;
     }
 }
