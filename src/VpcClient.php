@@ -114,10 +114,6 @@ class VpcClient extends Client
                 'gateway_ip'  => $gatewayIp,
             ],
         ];
-        if ($enterpriseProjectId) {
-            $this->curlData['enterprise_project_id'] = $enterpriseProjectId;
-        }
-
         return $this->request();
 
     }
