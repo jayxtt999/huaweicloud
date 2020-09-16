@@ -33,7 +33,7 @@ class BssClient extends Client
     {
         $this->version    = 'v2';
         $this->curlMethod = 'POST';
-        $this->curlParams = "orders/suscriptions/resources/query";
+        $this->curlPath = "orders/suscriptions/resources/query";
         $this->noEndpoint = true;
 
         if ($resourceIds) {
@@ -61,7 +61,7 @@ class BssClient extends Client
     {
 
         $this->version    = 'v2';
-        $this->curlParams = "orders/customer-orders/details/" . $orderId;
+        $this->curlPath = "orders/customer-orders/details/" . $orderId;
         $this->noEndpoint = true;
 
         return $this->request();
@@ -84,7 +84,7 @@ class BssClient extends Client
 
         $this->version    = 'v2';
         $this->curlMethod = 'POST';
-        $this->curlParams = "orders/subscriptions/resources/renew";
+        $this->curlPath = "orders/subscriptions/resources/renew";
         $this->noEndpoint = true;
 
         $this->curlData = [
@@ -120,7 +120,7 @@ class BssClient extends Client
 
         $this->version    = 'v2';
         $this->curlMethod = 'POST';
-        $this->curlParams = "partners/sub-customers/users/check-identity";
+        $this->curlPath = "partners/sub-customers/users/check-identity";
         $this->noEndpoint = true;
 
         $this->curlData = [
@@ -148,7 +148,7 @@ class BssClient extends Client
     {
         $this->version    = 'v2';
         $this->curlMethod = 'POST';
-        $this->curlParams = "partners/sub-customers";
+        $this->curlPath = "partners/sub-customers";
         $this->noEndpoint = true;
 
         $this->curlData = [
@@ -175,7 +175,7 @@ class BssClient extends Client
 
         $this->version    = 'v2';
         $this->curlMethod = 'POST';
-        $this->curlParams = "partners/sub-customers/query";
+        $this->curlPath = "partners/sub-customers/query";
         $this->noEndpoint = true;
         if ($query) {
             $this->curlData = $query;
@@ -227,7 +227,7 @@ class BssClient extends Client
 
         $this->version    = 'v2';
         $this->curlMethod = 'POST';
-        $this->curlParams = "customers/realname-auths/individual";
+        $this->curlPath = "customers/realname-auths/individual";
         $this->noEndpoint = true;
         $this->curlData   = [
             'customer_id'       => $customerId,
@@ -260,7 +260,7 @@ class BssClient extends Client
 
         $this->version    = 'v2';
         $this->curlMethod = 'GET';
-        $this->curlParams = "customers/realname-auths/result?customer_id=" . $customerId;
+        $this->curlPath = "customers/realname-auths/result?customer_id=" . $customerId;
         $this->noEndpoint = true;
 
         return $this->request();
@@ -291,7 +291,7 @@ class BssClient extends Client
 
         $this->version    = 'v2';
         $this->curlMethod = 'PUT';
-        $this->curlParams = "partners/sub-customers/credit-coupons";
+        $this->curlPath = "partners/sub-customers/credit-coupons";
         $this->noEndpoint = true;
         $this->curlData   = [
             'customer_id' => $customerId,
@@ -314,7 +314,7 @@ class BssClient extends Client
     public function queryCreditCoupons($customerIds=[]){
         $this->version    = 'v2';
         $this->curlMethod = 'POST';
-        $this->curlParams = "partners/sub-customers/credit-coupons/query";
+        $this->curlPath = "partners/sub-customers/credit-coupons/query";
         $this->noEndpoint = true;
         $this->curlData   = [
             'customer_ids' => $customerIds,

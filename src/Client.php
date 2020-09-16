@@ -30,6 +30,7 @@ class Client
     public $fixedCurlUrl     = false;
     public $noEndpoint       = false;
     public $curlParams;
+    public $curlPath;
     public $curlMethod       = 'GET';
     public $curlData;
     public $returnHeader     = false;//是否需要返回header头信息
@@ -56,6 +57,12 @@ class Client
         $this->region = $region;
     }
 
+    
+    public function resetSigner($ak,$sk){
+
+        $this->signer =  new Signer($ak, $sk);
+    }
+    
     /**
      * @param $url
      * @param $params
@@ -71,6 +78,7 @@ class Client
                 $tag           = ($i == 0 ? '?' : '&');
                 $this->curlUrl .= $tag;
                 $this->curlUrl .= ($key . '=' . $item);
+                $i++;
             }
         } else {
             $this->curlUrl .= $this->curlParams;
@@ -117,8 +125,10 @@ class Client
         if ($this->version) {
             $this->curlUrl .= ($this->version . '/');
         }
+        if ($this->curlPath) {
+            $this->curlUrl .= $this->curlPath ;
+        }
         $this->addParams();
-
         return true;
     }
 

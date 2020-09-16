@@ -27,7 +27,7 @@ class EvsClient extends Client
 
         $this->version    = 'v2';
         $this->curlMethod = 'GET';
-        $this->curlParams = $projectId . '/cloudvolumes/' . $volumeId;
+        $this->curlPath = $projectId . '/cloudvolumes/' . $volumeId;
 
         return $this->request();
 
@@ -49,9 +49,9 @@ class EvsClient extends Client
 
         $this->version    = 'v2';
         $this->curlMethod = 'GET';
-        $this->curlParams = $projectId . '/cloudvolumes/detail';
+        $this->curlPath = $projectId . '/cloudvolumes/detail';
         if ($filter) {
-            $this->curlParams = $filter;
+            $this->curlPath = $filter;
         }
 
         return $this->request();
@@ -78,7 +78,7 @@ class EvsClient extends Client
 
         $this->version    = 'v2.1';
         $this->curlMethod = 'POST';
-        $this->curlParams = $projectId . '/cloudvolumes';
+        $this->curlPath = $projectId . '/cloudvolumes';
 
         $this->curlData = [
 
@@ -118,7 +118,7 @@ class EvsClient extends Client
 
         $this->version    = 'v2.1';
         $this->curlMethod = 'POST';
-        $this->curlParams = $projectId . '/cloudvolumes/' . $volumeId . '/action';
+        $this->curlPath = $projectId . '/cloudvolumes/' . $volumeId . '/action';
         $this->curlData   = [
 
             'os-extend' => [
@@ -148,7 +148,7 @@ class EvsClient extends Client
 
         $this->version    = 'v2';
         $this->curlMethod = 'DELETE';
-        $this->curlParams = $projectId . '/cloudvolumes/' . $volumeId;
+        $this->curlPath = $projectId . '/cloudvolumes/' . $volumeId;
 
         return $this->request();
     }
@@ -166,7 +166,7 @@ class EvsClient extends Client
     public function getAvailabilityZone($projectId)
     {
         $this->version    = 'v2';
-        $this->curlParams = $projectId . '/os-availability-zone';
+        $this->curlPath = $projectId . '/os-availability-zone';
 
         return $this->request();
 
@@ -186,7 +186,7 @@ class EvsClient extends Client
     public function jobs($projectId, $jobId)
     {
         $this->version    = 'v1';
-        $this->curlParams = $projectId . '/jobs/' . $jobId;
+        $this->curlPath = $projectId . '/jobs/' . $jobId;
         $this->curlMethod = 'GET';
 
         return $this->request();

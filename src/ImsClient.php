@@ -23,7 +23,7 @@ class ImsClient extends Client
             $curlParams.=( ($i==1?'?':'&') .$key.'='.$param);
             $i++;
         }
-        $this->curlParams = $curlParams;
+        $this->curlPath = $curlParams;
         return $this->request();
 
     }

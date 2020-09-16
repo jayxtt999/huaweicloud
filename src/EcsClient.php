@@ -46,7 +46,7 @@ class EcsClient extends Client
 
         $this->version    = 'v1.1';
         $this->curlMethod   = 'POST';
-        $this->curlParams = $projectId . '/cloudservers';
+        $this->curlPath = $projectId . '/cloudservers';
         $this->curlData   = [
             'server' => [
                 'availability_zone' => $zone,
@@ -98,7 +98,7 @@ class EcsClient extends Client
 
         $this->version    = 'v1.1';
         $this->curlMethod   = 'POST';
-        $this->curlParams = $projectId . '/cloudservers/' . $instanceId . '/resize';
+        $this->curlPath = $projectId . '/cloudservers/' . $instanceId . '/resize';
         $this->curlData   = [
             'resize' => [
                 'flavorRef'   => $flavorRef,
@@ -128,7 +128,7 @@ class EcsClient extends Client
 
         $this->version    = 'v1';
         $this->curlMethod   = 'GET';
-        $this->curlParams = $projectId . '/cloudservers/' . $instanceId;
+        $this->curlPath = $projectId . '/cloudservers/' . $instanceId;
 
         return $this->request();
 
@@ -148,7 +148,7 @@ class EcsClient extends Client
     {
 
         $this->version    = 'v1';
-        $this->curlParams = $projectId . '/cloudservers/' . $instanceId . '/block_device';
+        $this->curlPath = $projectId . '/cloudservers/' . $instanceId . '/block_device';
 
         return $this->request();
 
@@ -166,7 +166,7 @@ class EcsClient extends Client
     {
         $this->version    = 'v2.1';
         $this->curlMethod   = 'GET';
-        $this->curlParams = $projectId . '/os-availability-zone';
+        $this->curlPath = $projectId . '/os-availability-zone';
 
         return $this->request();
 
@@ -184,7 +184,7 @@ class EcsClient extends Client
     public function getFlavors($projectId,$az='')
     {
         $this->version    = 'v1';
-        $this->curlParams = $projectId . '/cloudservers/flavors';
+        $this->curlPath = $projectId . '/cloudservers/flavors';
         if($az){
             $this->curlParams .= ('?availability_zone='.$az);
         }
@@ -204,7 +204,7 @@ class EcsClient extends Client
     public function jobs($projectId, $jobId)
     {
         $this->version    = 'v1';
-        $this->curlParams = $projectId . '/jobs/' . $jobId;
+        $this->curlPath = $projectId . '/jobs/' . $jobId;
         $this->curlMethod   = 'GET';
         return $this->request();
     }
@@ -231,7 +231,7 @@ class EcsClient extends Client
         }
         $this->version    = 'v1';
         $this->curlMethod   = 'POST';
-        $this->curlParams = $projectId . '/cloudservers/action';
+        $this->curlPath = $projectId . '/cloudservers/action';
         $this->curlData   = [
             'os-start' => [
                 'servers' => $servers,
@@ -265,7 +265,7 @@ class EcsClient extends Client
         }
         $this->version    = 'v1';
         $this->curlMethod   = 'POST';
-        $this->curlParams = $projectId . '/cloudservers/action';
+        $this->curlPath = $projectId . '/cloudservers/action';
         $this->curlData   = [
             'reboot' => [
                 'type'    => $type,
@@ -300,7 +300,7 @@ class EcsClient extends Client
             ];
         }
         $this->version    = 'v1';
-        $this->curlParams = $projectId . '/cloudservers/action';
+        $this->curlPath = $projectId . '/cloudservers/action';
         $this->curlMethod   = 'POST';
         $this->curlData   = [
             'os-stop' => [
@@ -335,7 +335,7 @@ class EcsClient extends Client
             ];
         }
         $this->version    = 'v1';
-        $this->curlParams = $projectId . '/cloudservers/server-name';
+        $this->curlPath = $projectId . '/cloudservers/server-name';
         $this->curlMethod   = 'PUT';
         $this->curlData   = [
             'name'    => $name,
@@ -372,7 +372,7 @@ class EcsClient extends Client
             ];
         }
         $this->version    = 'v1';
-        $this->curlParams = $projectId . '/cloudservers/os-reset-passwords';
+        $this->curlPath = $projectId . '/cloudservers/os-reset-passwords';
         $this->curlMethod   = 'PUT';
         $this->curlData   = [
             'new_password' => $newPassword,
@@ -399,7 +399,7 @@ class EcsClient extends Client
 
 
         $this->version    = 'v1';
-        $this->curlParams = $projectId . '/cloudservers/' . $instanceId . '/remote_console';
+        $this->curlPath = $projectId . '/cloudservers/' . $instanceId . '/remote_console';
         $this->curlMethod   = 'POST';
         $this->curlData   = [
             'remote_console' => [
@@ -428,7 +428,7 @@ class EcsClient extends Client
 
         $this->version    = 'v1';
         $this->curlMethod   = 'POST';
-        $this->curlParams = $projectId . '/cloudservers/' . $instanceId . '/changeos';
+        $this->curlPath = $projectId . '/cloudservers/' . $instanceId . '/changeos';
         $this->curlData   = [
             'os-change' => [
                 'adminpass' => $adminpass,
@@ -456,7 +456,7 @@ class EcsClient extends Client
     {
         $this->version    = 'v1';
         $this->curlMethod   = 'POST';
-        $this->curlParams = $projectId . '/cloudservers/' . $instanceId . '/attachvolume';
+        $this->curlPath = $projectId . '/cloudservers/' . $instanceId . '/attachvolume';
         $this->curlData   = [
             'volumeAttachment' => [
                 'volumeId' => $volumeId,
@@ -483,7 +483,7 @@ class EcsClient extends Client
     {
         $this->version    = 'v1';
         $this->curlMethod   = 'POST';
-        $this->curlParams = $projectId . '/cloudservers/' . $instanceId . '/detachvolume/'.$volumeId.'?delete_flag='.$deleteFlag;
+        $this->curlPath = $projectId . '/cloudservers/' . $instanceId . '/detachvolume/'.$volumeId.'?delete_flag='.$deleteFlag;
 
         return $this->request();
     }

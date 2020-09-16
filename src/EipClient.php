@@ -16,7 +16,7 @@ class EipClient extends Client
     public function describeIps($projectId, $marker, $limit)
     {
         $this->version    = 'v1';
-        $this->curlParams = "{$projectId}/publicips";
+        $this->curlPath = "{$projectId}/publicips";
 
         return $this->request();
 
@@ -37,7 +37,7 @@ class EipClient extends Client
     {
         $this->version    = 'v2.0';
         $this->curlMethod = 'PUT';
-        $this->curlParams = "{$projectId}/bandwidths/" . $bandwidthId;
+        $this->curlPath = "{$projectId}/bandwidths/" . $bandwidthId;
         $this->curlData   = [
             'bandwidth' => ['size' => $size],
             'extendParam' => ['is_auto_pay' => true],
