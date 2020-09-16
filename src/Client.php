@@ -152,7 +152,6 @@ class Client
         $req->headers = array(
             'content-type' => 'application/json;charset=UTF-8',
         );
-
         $req->body = $body;
         if ($this->returnHeader) {
             $req->curlopt_header = true;

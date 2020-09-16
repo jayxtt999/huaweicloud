@@ -452,7 +452,7 @@ class EcsClient extends Client
      * @return array|bool|mixed|void
      * @author naix
      */
-   public function attachVolume($projectId, $instanceId,$volumeId)
+    public function attachVolume($projectId, $instanceId,$volumeId)
     {
         $this->version    = 'v1';
         $this->curlMethod   = 'POST';
