@@ -99,7 +99,7 @@ class VpcClient extends Client
      *
      * @author naix
      */
-    public function createSubNet($vpcId, $name, $cidr, $gatewayIp, $description = '')
+    public function createSubNet($projectId,$vpcId, $name, $cidr, $gatewayIp, $description = '')
     {
 
         $this->version    = 'v1';
