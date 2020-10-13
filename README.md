@@ -1,4 +1,6 @@
 ### huaweicloud
+`composer require jayxtt999/huaweicloud-sdk-php:dev-master `
+
 ####华为云相关sdk 主要是云服务器部分以及云服务器附加的业务属性
 目前相关的有
  - Ecs
